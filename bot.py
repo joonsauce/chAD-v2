@@ -31,17 +31,17 @@ async def on_message(message):
             text_counts.setdefault(server_id, count)
             print(1)
 
-        numberOfPeople = bot.get_guild(message.guild.id)
-        maxThreshold = numberOfPeople * 30
+        # will be changed up soon
+        # numberOfPeople = bot.get_guild(message.guild.id)
+        # maxThreshold = numberOfPeople * 30
 
-        if count > maxThreshold:
-            value = getRandomAtt()
-            ans = sendAD()
-            await message.channel.send(embed=ans)
-            text_counts.update({server_id: 0})
-            addMoney(server_id)
-            updateData(serverID1, 2, 0, record_id)
-        else:
-            text_counts.update({server_id: count})
+        # if count > maxThreshold:
+            # ans = sendAD()
+            # await message.channel.send(embed=ans)
+            # text_counts.update({server_id: 0})
+            # addMoney(server_id)
+            # updateData(serverID1, 2, 0, record_id)
+        # else:
+            # text_counts.update({server_id: count})
 
 bot.run(discord_token)
