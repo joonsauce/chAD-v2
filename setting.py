@@ -20,8 +20,11 @@ from secrets import *
 # handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 # logger.addHandler(handler)
 
-# sets prefix for bot - used for debug & launching purposes
+# sets prefix for bot - used for debug
 prefix = "ad"
+
+# sets description of the bot
+description = "chAD-v2.00T"
 
 # initializes bot
 bot = commands.Bot(command_prefix=prefix)

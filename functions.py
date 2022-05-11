@@ -1,6 +1,6 @@
 from setting import *
 
-# gets a random ad to display - will be partially obsolete in the near future
+# gets a random ad to display - will be partially rewritten in the near future
 def getRandomAtt():
     data = getData("ads")
     x = len(data["records"])
@@ -23,6 +23,7 @@ def sendAD():
                     inline=False)
     return embed
 
+# differentiates between the two types of tables
 def getData(type):
     if type == "ud":
         url = api_link
@@ -52,6 +53,7 @@ def addMoney(server):
 
     updateData(serverID1, 0, money, record_id)
 
+# updates the data in the airtable
 def updateData(serverID1, type, value, record_id):
     if type == 0:
         data = '{"fields": { "guild_id": ' + str(serverID1) + ', "plan_type": ' + str(value) + '}}'

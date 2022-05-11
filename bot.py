@@ -23,15 +23,16 @@ async def on_message(message):
                     break
                 else:
                     pass
+            # will be obsolete - idek what this accomplishes
             countUpdate = current_count + 1
-
+            # will be obsolete - will be rewritten & function changed
             updateData(serverID1, 1, countUpdate, record_id)
         else:
             count = 1
             text_counts.setdefault(server_id, count)
             print(1)
 
-        # will be changed up soon
+        # will be changed up soon - counted number of messages necessary to get an ad & earn money
         # numberOfPeople = bot.get_guild(message.guild.id)
         # maxThreshold = numberOfPeople * 30
 
