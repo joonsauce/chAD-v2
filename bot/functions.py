@@ -1,11 +1,13 @@
 from setting import *
 
+# gets a random ad to display - will be partially obsolete in the near future
 def getRandomAtt():
     data = getData("ads")
     x = len(data["records"])
     num = randint(0, x)
     return data["records"][num]["fields"]
 
+# uses the random ad from above to send into the servers through Discord embeds
 def sendAD():
     embed = discord.Embed(
         color=discord.Colour.dark_red()
