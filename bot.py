@@ -5,7 +5,7 @@ from setting import *
 @bot.event
 async def on_message(message):
     # this way bot sending something doesn't trigger anything
-    if bot.user.id == message.author.id:
+    if message.author.bot:
         pass
     else:
         server_id = str(message.guild.id)
