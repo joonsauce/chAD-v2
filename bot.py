@@ -4,8 +4,8 @@ from setting import *
 # main function - will be massively overhauled in the near future
 @bot.event
 async def on_message(message):
-    # prevents bot spamming
-    if message.author.bot:
+    # this way bot sending something doesn't trigger anything
+    if bot.user.id == message.author.id:
         pass
     else:
         server_id = str(message.guild.id)
