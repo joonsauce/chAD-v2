@@ -1,7 +1,7 @@
 from functions import *
 from setting import *
 
-# main function
+# main function - will be massively overhauled in the near future
 @bot.event
 async def on_message(message):
     # this way bot sending something doesn't trigger anything
