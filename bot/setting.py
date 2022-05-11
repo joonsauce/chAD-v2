@@ -1,26 +1,32 @@
+# import the api wrapper
 import discord
-import logging
+# import to debug stuff - in case things aren't going well
+# import logging
+# import to check connections to the internet
 import requests
+# import to make some random stuff - will be obsolete in the future
 import random
 from random import seed
 from random import randint
+# import to gain access to bot commands
 from discord.ext import commands
+# import to gain access to API keys
 from secrets import *
 
-# debug logger for bot
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='../discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+# debug logger for bot - in case stuff is going wrong
+# logger = logging.getLogger('discord')
+# logger.setLevel(logging.DEBUG)
+# handler = logging.FileHandler(filename='../discord.log', encoding='utf-8', mode='w')
+# handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+# logger.addHandler(handler)
 
-# sets prefix for bot
+# sets prefix for bot - used for debug & launching purposes
 prefix = "ad"
 
 # initializes bot
 bot = commands.Bot(command_prefix=prefix)
 
-# removes help command to add our own help command
+# removes help command to add our own custom help command
 bot.remove_command("help")
 
 # defines text counts to count until bot + $1
@@ -69,6 +75,7 @@ async def on_ready():
 
     # POSTs updated list of servers the bot is in
     for i in range(len(servers)):
+        # have to split the server id into two parts because Airtable couldn't handle longer integers
         id = list(str(servers[i].id))
         idsplit1 = []
         idsplit2 = []
