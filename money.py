@@ -2,18 +2,17 @@ from setting import *
 from functions import *
 
 # bring changes to how much money each server earned
-def updateMoney(data, id):
-    # updates amount of money in airtable - can change the for loop to be more efficient
+def addMoney(server):
+    data = getData(True)
+    # updates amount of money in airtable
     for serverIDGET in range(len(data["records"])):
         serverID1 = str(data["records"][serverIDGET]["fields"]["guild_id"])
         serverID = serverID1 + str(data["records"][serverIDGET]["fields"]["guild_id2"])
-        if serverID == id:
+        if serverID == server:
             record_id = data["records"][serverIDGET]["id"]
-            current_count = data["records"][serverIDGET]["fields"]["text_count"]
+            current_money = data["records"][serverIDGET]["fields"]["plan_type"]
             break
         else:
             pass
-    # will be obsolete - idek what this accomplishes
-    countUpdate = current_count + 1
-    # will be obsolete - will be rewritten & function changed
-    updateData(serverID1, 1, countUpdate, record_id)
+    money = current_money + 0.01
+    updateData(serverID1, 0, money, record_id)

@@ -14,17 +14,13 @@ def sendAD(svr_id):
     data = getData(True)
     updateMoney(data, svr_id)
     # code below creates embed to send the ad
-    embed = discord.Embed(
-        color=discord.Colour.dark_red()
-    )
-
-    dictionary = getRandomAtt()
-
-    embed.set_author(name="Advertisement from {}".format(dictionary["compName"]))
-    embed.set_image(url=dictionary["imgLink"])
-
-    embed.add_field(name='What is {}?'.format(dictionary["compName"]),
-                    value=dictionary["msgFromSponsor"] + " " + dictionary["link2sponsor"],
+    embed = discord.Embed(color=discord.Colour.dark_red())
+    # get information about ad to show
+    ad = getRandomAtt()
+    embed.set_author(name="Advertisement from {}".format(ad["compName"]))
+    embed.set_image(url=ad["imgLink"])
+    embed.add_field(name='What is {}?'.format(ad["compName"]),
+                    value=ad["msgFromSponsor"] + " " + ad["link2sponsor"],
                     inline=False)
     return embed
 
@@ -34,29 +30,10 @@ def getData(type):
         url = api_link
     else:
         url = api_link2
-
-    response = requests.get(url=url,
-                            headers=header1,
-                            params=params)
+    response = requests.get(url=url, headers=header1, params=params)
     print("Get Response: " + str(response))
     data = response.json()
     return data
-
-def addMoney(server):
-    data = getData(True)
-    # updates amount of money in airtable
-    for serverIDGET in range(len(data["records"])):
-        serverID1 = str(data["records"][serverIDGET]["fields"]["guild_id"])
-        serverID = serverID1 + str(data["records"][serverIDGET]["fields"]["guild_id2"])
-        if serverID == server:
-            record_id = data["records"][serverIDGET]["id"]
-            current_money = data["records"][serverIDGET]["fields"]["plan_type"]
-            break
-        else:
-            pass
-    money = current_money + 0.01
-
-    updateData(serverID1, 0, money, record_id)
 
 # updates the data in the airtable
 def updateData(serverID1, type, value, record_id):

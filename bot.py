@@ -13,6 +13,21 @@ async def on_message(message):
         if server_id in text_counts.keys():
             count = int(text_counts.get(server_id))
             count += 1
+            data = getData(True)
+            # updates amount of money in airtable - can change the for loop to be more efficient
+            for serverIDGET in range(len(data["records"])):
+                serverID1 = str(data["records"][serverIDGET]["fields"]["guild_id"])
+                serverID = serverID1 + str(data["records"][serverIDGET]["fields"]["guild_id2"])
+                if serverID == id:
+                    record_id = data["records"][serverIDGET]["id"]
+                    current_count = data["records"][serverIDGET]["fields"]["text_count"]
+                    break
+                else:
+                    pass
+            # will be obsolete - idek what this accomplishes
+            countUpdate = current_count + 1
+            # will be obsolete - will be rewritten & function changed
+            updateData(serverID1, 1, countUpdate, record_id)
         else:
             count = 1
             text_counts.setdefault(server_id, count)
