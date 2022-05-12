@@ -25,7 +25,7 @@ def sendAD():
 
 # differentiates between the two types of tables
 def getData(type):
-    if type == "ud":
+    if type:
         url = api_link
     else:
         url = api_link2
@@ -38,7 +38,7 @@ def getData(type):
     return data
 
 def addMoney(server):
-    data = getData("ud")
+    data = getData(True)
     # updates amount of money in airtable
     for serverIDGET in range(len(data["records"])):
         serverID1 = str(data["records"][serverIDGET]["fields"]["guild_id"])
