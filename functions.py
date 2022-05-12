@@ -12,7 +12,7 @@ def getRandomAtt():
 def sendAD(svr_id):
     # code below updates the amount of revenue generated in the server
     data = getData(True)
-    updateMoney(data, svr_id)
+    addMoney(svr_id)
     # code below creates embed to send the ad
     embed = discord.Embed(color=discord.Colour.dark_red())
     # get information about ad to show

@@ -24,6 +24,7 @@ async def on_message(message):
                     break
                 else:
                     pass
+            # a small fix to get rid of some errors - just need to organize the loop better and use a better search algo
             # will be obsolete - idek what this accomplishes
             countUpdate = current_count + 1
             # will be obsolete - will be rewritten & function changed

@@ -14,5 +14,6 @@ def addMoney(server):
             break
         else:
             pass
+    # a small fix to get rid of some errors - just need to organize the loop better and use a better search algo
     money = current_money + 0.01
     updateData(serverID1, 0, money, record_id)
