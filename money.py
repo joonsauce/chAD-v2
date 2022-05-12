@@ -3,7 +3,7 @@ from functions import *
 
 # bring changes to how much money each server earned
 def updateMoney(data, id):
-    # updates amount of money in airtable
+    # updates amount of money in airtable - can change the for loop to be more efficient
     for serverIDGET in range(len(data["records"])):
         serverID1 = str(data["records"][serverIDGET]["fields"]["guild_id"])
         serverID = serverID1 + str(data["records"][serverIDGET]["fields"]["guild_id2"])

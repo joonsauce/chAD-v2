@@ -1,4 +1,5 @@
 from setting import *
+from money import *
 
 # gets a random ad to display - will be partially rewritten in the near future
 def getRandomAtt():
@@ -8,7 +9,11 @@ def getRandomAtt():
     return data["records"][num]["fields"]
 
 # uses the random ad from above to send into the servers through Discord embeds
-def sendAD():
+def sendAD(svr_id):
+    # code below updates the amount of revenue generated in the server
+    data = getData(True)
+    updateMoney(data, svr_id)
+    # code below creates embed to send the ad
     embed = discord.Embed(
         color=discord.Colour.dark_red()
     )

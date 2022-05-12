@@ -13,7 +13,6 @@ async def on_message(message):
         if server_id in text_counts.keys():
             count = int(text_counts.get(server_id))
             count += 1
-            data = getData(True)
         else:
             count = 1
             text_counts.setdefault(server_id, count)
