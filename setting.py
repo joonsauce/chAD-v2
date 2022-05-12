@@ -24,7 +24,7 @@ from secrets import *
 prefix = "ad"
 
 # sets description of the bot
-description = "chAD-v2.00T"
+description = "chAD-v2.01T"
 
 # initializes bot
 bot = commands.Bot(command_prefix=prefix)
@@ -56,6 +56,7 @@ params = (
 async def on_ready():
     # changes bot status
     await bot.change_presence(activity=discord.Game("Advertising to servers"))
+    # whatever is below needs to be largely rewritten - deleting servers and readding them is just inefficient
     # below contacts airtable to edit the tables
     servers = bot.guilds
     # GETs all records in the table to check if all servers bot is in, is in the table

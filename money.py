@@ -2,8 +2,7 @@ from setting import *
 from functions import *
 
 # bring changes to how much money each server earned
-def addMoney(server):
-    data = getData(True)
+def addMoney(data, server):
     # updates amount of money in airtable
     for serverIDGET in range(len(data["records"])):
         serverID1 = str(data["records"][serverIDGET]["fields"]["guild_id"])
