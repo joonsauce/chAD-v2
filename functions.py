@@ -1,6 +1,12 @@
 from setting import *
 from money import *
 
+# ML code to analyze contents of the message - will be written soon
+def anamsg(msg):
+    return
+
+# everything below is the old code - some code will be recycled
+
 # gets a random ad to display - will be partially rewritten in the near future
 def getRandomAtt():
     data = getData(False)
@@ -19,7 +25,7 @@ def sendAD(svr_id):
     ad = getRandomAtt()
     embed.set_author(name="Advertisement from {}".format(ad["compName"]))
     embed.set_image(url=ad["imgLink"])
-    embed.add_field(name='What is {}?'.format(ad["compName"]),
+    embed.add_field(name='{}'.format(ad["compName"]),
                     value=ad["msgFromSponsor"] + " " + ad["link2sponsor"],
                     inline=False)
     return embed

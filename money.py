@@ -9,7 +9,7 @@ def addMoney(data, server):
         serverID = serverID1 + str(data["records"][serverIDGET]["fields"]["guild_id2"])
         if serverID == server:
             record_id = data["records"][serverIDGET]["id"]
-            current_money = data["records"][serverIDGET]["fields"]["plan_type"]
+            current_money = data["records"][serverIDGET]["fields"]["earned"]
             break
         else:
             pass

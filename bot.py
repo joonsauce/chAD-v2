@@ -5,6 +5,14 @@ from money import *
 # main function - will be massively overhauled in the near future
 @bot.event
 async def on_message(message):
+    if message.author.bot:
+        return
+    # this will analyze what the message is saying to append info abt message to airtable
+    ana_msg = anamsg(message)
+
+
+    # everything below is the old code
+
     # this way bot sending something doesn't trigger anything
     if message.author.bot:
         pass

@@ -1,6 +1,6 @@
 # import the api wrapper
 import discord
-# import to debug stuff - in case things aren't going well
+# import to debug stuff - in case things aren't going well - not needed to run the bot
 # import logging
 # import to check connections to the internet
 import requests
@@ -24,7 +24,7 @@ from secrets import *
 prefix = "ad"
 
 # sets description of the bot
-description = "chAD-v2.01T"
+description = "chAD-v2.02T"
 
 # initializes bot
 bot = commands.Bot(command_prefix=prefix)
@@ -55,8 +55,8 @@ params = (
 @bot.event
 async def on_ready():
     # changes bot status
-    await bot.change_presence(activity=discord.Game("Advertising to servers"))
-    # whatever is below needs to be largely rewritten - deleting servers and readding them is just inefficient
+    await bot.change_presence(activity=discord.Game("The better way to advertise"))
+    # whatever is below needs to be largely rewritten - deleting servers and re-adding them is just inefficient
     # below contacts airtable to edit the tables
     servers = bot.guilds
     # GETs all records in the table to check if all servers bot is in, is in the table
