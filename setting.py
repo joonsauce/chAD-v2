@@ -2,6 +2,8 @@
 import discord
 # import to debug stuff - in case things aren't going well - not needed to run the bot
 # import logging
+# import to do some quick maths
+import numpy
 # import to check connections to the internet
 import requests
 # import to make some random stuff - will be obsolete in the future
@@ -12,6 +14,7 @@ from random import randint
 from discord.ext import commands
 # import to gain access to API keys
 from secrets import *
+from collections import deque
 
 # debug logger for bot - in case stuff is going wrong
 # logger = logging.getLogger('discord')
@@ -24,7 +27,7 @@ from secrets import *
 prefix = "ad"
 
 # sets description of the bot
-description = "chAD-v2.02T"
+description = "chAD-v2.00T"
 
 # initializes bot
 bot = commands.Bot(command_prefix=prefix)
@@ -50,6 +53,41 @@ params = (
         ('maxRecords', 999),
         ('view', 'Grid view'),
     )
+
+# bot startup procedure
+@bot.event
+async def on_ready():
+    # set bot status
+    await bot.change_presence(activity=discord.Game("chAD"))
+    # checks the servers the bot is in - need to find a way for this function to be triggered whenever the bot joins a new server
+    servers = bot.guilds
+    # GET information from the airtable regarding which servers are registered
+    response = requests.get(url=api_link, headers=header1, params=params)
+    # if GET fails, stops the code (for now) - should trigger a backup code that can check if server up or not instead
+    if response != 200:
+        return
+    # get the list of servers
+    data = response.json()
+    # grabs list of all the registered servers
+    def grab_svr(data):
+        return data["fields"]["guild_id"]
+    svr_list = list(map(grab_svr, data['records']))
+    # stops ready procedure if all servers are already registered
+    if all(servers) in svr_list:
+        return
+    new_list = numpy.subtract(servers, svr_list)
+    for svr in new_list:
+        svr1 = svr[8:]
+        svr2 = svr[:8]
+        data = '{ "records": [ { "fields": { "guild_id": ' + str(svr1) + ', "guild_id2": ' + str(
+            svr2) + ', "plan_type": ' + str(0) + '} }] }'
+        response = requests.post(url=api_link, headers=header1, data=data)
+        if response != 200:
+            print("Server list update error")
+            exit()
+    print("Status: Ready")
+
+# old code is below - need to change startup behavior
 
 # start up procedure for bot
 @bot.event

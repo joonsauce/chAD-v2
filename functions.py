@@ -5,6 +5,29 @@ from money import *
 def anamsg(msg):
     return
 
+# get random ad from most relevant topic the server is interested in
+def getAd(id):
+    # get information about the server
+    svr_info = getSvrInfo(id)
+    # get ad related to what the server wants
+    data = getData(svr_info)
+
+# get information about the server
+def getSvrInfo(svr_id):
+    # split server ID into two parts
+    svr = str(svr_id)
+    svr_id_1 = svr[:8]
+    svr_id_2 = svr[8:]
+    # get information from the database
+    url = api_link
+    response = requests.get(url=url, headers=header1, params=params)
+    if response != 200:
+        return -1
+    data = response.json()
+    servers = list(map(lambda x: x, data["records"]))
+    # if svr_id_1 in servers:
+
+
 # everything below is the old code - some code will be recycled
 
 # gets a random ad to display - will be partially rewritten in the near future
