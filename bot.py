@@ -12,7 +12,24 @@ async def on_message(message):
     ana_msg = anamsg(message)
     # in the case of error, stop the function
     if ana_msg == -1:
+        print("Message analysis error")
         return
+    data = getData(message.guild.id)
+    if data == -1
+        print("getData error")
+        return
+    def getsvr(k):
+        return k["fields"]["guild_id"]
+    servers = list(map(getsvr, data["records"]))
+    j = message.guild.id[:-8]
+    if j in servers:
+        i = servers.index(j)
+        record_id = data["records"][i]["field"]["id"]
+        current_count = data["records"][i]["field"]["text_count"]
+    else:
+
+
+
 
 
     # everything below is the old code

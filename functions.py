@@ -24,8 +24,10 @@ def getSvrInfo(svr_id):
     if response != 200:
         return -1
     data = response.json()
-    servers = list(map(lambda x: x, data["records"]))
-    # if svr_id_1 in servers:
+    def grab_svr(data):
+        return data["fields"]["guild_id"]
+    servers = list(map(grab_svr, data["records"]))
+    if svr_id_1 in servers:
 
 
 # everything below is the old code - some code will be recycled
